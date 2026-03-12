@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="4.2">
+    <attributes>
+        <attribute name="name" value="algorithme_challenge2"/>
+        <attribute name="authors" value="ridak"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2026-03-05 09:02:35 "/>
+        <attribute name="created" value="cmlkYWs7TEFQVE9QLUxVUDQ5MU4wOzIwMjYtMDMtMDU7IjEyOjIwOjQyICI7Mjc0MQ=="/>
+        <attribute name="edited" value="cmlkYWs7TEFQVE9QLUxVUDQ5MU4wOzIwMjYtMDMtMDU7IjA5OjAyOjM1ICI7MjsyODU4"/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <output expression="&quot;saisir ton age&quot;" newline="True"/>
+            <declare name="age" type="Integer" array="False" size=""/>
+            <input variable="age"/>
+            <if expression="age &lt;=  12">
+                <then>
+                    <output expression="&quot;the price is 20DH + BONUS special chlidren's Menu included !&quot;" newline="False"/>
+                </then>
+                <else>
+                    <if expression="age &gt; 12 &amp;&amp; age &lt; 18">
+                        <then>
+                            <output expression="&quot;the price is 40 dh &quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <if expression="age &gt; 60">
+                                <then>
+                                    <output expression="&quot;the price is 30 dh&quot;" newline="True"/>
+                                </then>
+                                <else>
+                                    <output expression="&quot;the price is 60 dh&quot;" newline="True"/>
+                                </else>
+                            </if>
+                        </else>
+                    </if>
+                </else>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
