@@ -18,4 +18,23 @@ function searchByName($pdo, $name){
     return $stmnt->fetchAll();
 }
 
+
+    function getCategories($pdo){
+     return $pdo->query("select * from categories")->fetchAll();
+    } 
+    function addAsset($pdo, $serial, $name, $price, $category_id, $etat) {
+    $sql = "INSERT INTO assets (serial_number, name, price, category_id, etat)
+            VALUES (:serial, :name, :price, :category_id, :etat)";
+
+    $stmt = $pdo->prepare($sql);
+
+    return $stmt->execute([
+        ':serial' => $serial,
+        ':name' => $name,
+        ':price' => $price,
+        ':category_id' => $category_id,
+        ':etat' => $etat
+    ]);
+}
+
 ?>

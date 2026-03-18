@@ -20,6 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 <head>
     <title>Assets</title>
     <style>
+
         body {
             font-family: Arial;
             margin: 0;
@@ -36,8 +37,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 
         h1 {
             grid-column: 1 / 3;
+            text-align: center;
         }
-
         .search {
             grid-column: 1 / 3;
             display: flex;
@@ -60,6 +61,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
         }
 
         .deployed {
+            color: blue;
+            font-weight: bold;
+        }
+        .available {
             color: green;
             font-weight: bold;
         }
@@ -70,9 +75,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
         }
 
         .total {
-            grid-column: 2 / 3;
+            grid-column: 1 / 3;
             text-align: right;
             font-weight: bold;
+            border-radius: 50px;
+             background-color: #19d04a;
+             padding: 20px 30px;
+             width: fit-content;
+             margin-left: auto;
+        }
+        button {
+            padding: 5px 10px;
+            border: none;
+            background-color: #71b5ff;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        a{
+            text-decoration: none;
+            color: white;
         }
 
     </style>
@@ -81,9 +103,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
 <body>
 
 <div class="container">
-
     <h1>List of Assets</h1>
-
+    <div class="ajouter">
+<button>
+    <a href="AddNewAsset.php">Add New Asset</a>
+</button>    
+</div>
     <div class="search">
         <form action="" method="GET">
             <input type="text" name="search" placeholder="search by name">
@@ -99,6 +124,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
                 <th>Status</th>
                 <th>Price</th>
                 <th>Category</th>
+                <th>Actions</th>
             </tr>
 
             <?php foreach ($AllAssetscat as $asset) : ?>
@@ -106,12 +132,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
                 <td><?php echo $asset['serial_number']; ?></td>
                 <td><?php echo $asset['name']; ?></td>
 
-                <td class="<?php echo ($asset['etat'] == 'Deployed') ? 'deployed' : 'repair'; ?>">
-                    <?php echo $asset['etat']; ?>
-                </td>
+               <td class="<?php echo ($asset['etat'] == 'deployed') ? 'deployed' 
+                : (($asset['etat'] == 'available') ? 'available' : 'repair'); ?>">
+                <?php echo $asset['etat']; ?>
+              </td>
 
                 <td><?php echo $asset['price']; ?></td>
                 <td><?php echo $asset['name_cat']; ?></td>
+                <td>
+                    <button><a href="edit_asset.php?id=<?php echo $asset['id']; ?>">Edit</a></button>
+                    <button><a href="delete_asset.php?id=<?php echo $asset['id']; ?>">Delete</a></button>
+                </td>
+
             </tr>
             <?php endforeach; ?>
 
@@ -123,6 +155,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET')
     </div>
 
 </div>
-
 </body>
 </html>
